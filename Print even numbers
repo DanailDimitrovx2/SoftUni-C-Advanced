@@ -1,0 +1,38 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace EvenNumbers
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var numbers = Console.ReadLine()
+                .Split()
+                .Select(int.Parse)
+                .ToArray();
+            var que = new Queue<int>();
+            var evens = new Queue<int>();
+            foreach (var item in numbers)
+            {
+                que.Enqueue(item);
+            }
+            while (que.Count != 0)
+            {
+                var num = que.Peek();
+                if (num % 2 != 0)
+                {
+                    que.Dequeue();
+                }
+                else
+                {
+                    evens.Enqueue(num);
+                    que.Dequeue();
+                }
+            }
+            Console.WriteLine(String.Join(", ", evens));
+        }
+    }
+}
+

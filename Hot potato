@@ -1,0 +1,36 @@
+using System;
+using System.Collections.Generic;
+
+namespace HotPotato
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var children = Console.ReadLine()
+                .Split();
+            var toss = int.Parse(Console.ReadLine());
+            var que = new Queue<string>();
+            foreach (var item in children)
+            {
+                que.Enqueue(item);
+            }
+            while (que.Count > 1)
+            {
+                for(int i=1; i<=toss; i++)
+                {
+                    if (i == toss)
+                    {
+                        Console.WriteLine($"Removed {que.Dequeue()}");
+                    }
+                    else
+                    {
+                        que.Enqueue(que.Dequeue());
+                    }
+                }
+            }
+            Console.WriteLine($"Last is {que.Peek()}");
+                
+        }
+    }
+}
